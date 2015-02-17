@@ -14,12 +14,9 @@
                     <div class="panel panel-info" >
                             <div class="panel-heading">
                                 <div class="panel-title">
-                                Gayatin Dental Clinic
-                                <a class="fget-pword-link" href="<?php echo base_url();?>cadmin/forgot_pass">Forgot password?</a>
-                                </div>
-                                
-                            </div>   
-                            
+                                    Gayatin Dental Clinic
+                                </div>                                
+                            </div>                               
                             <span class="login-errormsg"><?php echo $message;?></span>
                             <div class="panel-body login-panel-body" >
 
