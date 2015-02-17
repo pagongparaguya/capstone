@@ -207,6 +207,10 @@ body {
 
 /* ----- PANEL COMPONENT ----- */
 
+.panel {
+	margin-bottom: 5px;
+}
+
 /*.login-panel-body {
 	padding-top: 30px;
 }
@@ -308,4 +312,9 @@ body {
 
 label.error {
 	color:red;
+}
+
+/* SERVICES PAGE */
+.list-grp-services {
+	margin-bottom: 0;
 }

@@ -8,7 +8,12 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/customized.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/datepicker.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/dataTables.bootstrap.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/sweetalerts/sweet-alert.css" /> 
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/sweetalerts/sweet-alert.css" />
+    <!-- owl carousel css -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/owl/owl.carousel.css" />
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/owl/owl.theme.css" />
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/owl/owl.transitions.css" />
+
     <script src="<?php echo base_url();?>assets/js/jquery.js"></script>
     <script src="<?php echo base_url();?>assets/js/jquery-2.1.1.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
@@ -19,6 +24,9 @@
     <script src="<?php echo base_url();?>assets/js/jquery.validate.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/additional-methods.min.js"></script>
     <script src="<?php echo base_url();?>assets/sweetalerts/sweet-alert.js"></script>
+    <!-- owl carousel js -->
+    <script src="<?php echo base_url();?>assets/js/owl/owl.carousel.js"></script>
+    <script src="<?php echo base_url();?>assets/js/owl/owl.carousel.min.js"></script>
   </head>
 
   <body>
@@ -48,18 +56,12 @@
                                 
                                 
                                 <li class="<?php if($num == 1): ?>active<?php endif;?>">
-                                    <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clinic Schedule<span class="caret"></span></a> -->
                                     <a href="<?php echo base_url();?>calendar/display">Clinic Schedule</a>
-                                  <!--   <ul class="dropdown-menu" role="menu">
-                                        <li><a href="<?php echo base_url();?>pages/clinic_sched">View Clinic Schedule</a></li>
-                                        <li><a href="<?php echo base_url();?>appointment/view_appointment_queue">View Appointment Queue</a></li>                  
-                                    </ul> -->
                                 </li>
                                 <?php if($this->session->userdata('username')){?>
                                 <li class="dropdown <?php if($num == 7): ?>active<?php endif;?>">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Appointments<span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <!-- <li><a href="<?php echo base_url();?>appointment/new_appointment">Issue an Appointment</a></li> -->
                                          <li><a href="<?php echo base_url();?>appointment/view_upcoming_appointments">Upcoming Appointments</a></li>
                                         <li><a href="<?php echo base_url();?>appointment/view_appointment_queue">Pending Appointments</a></li>                  
                                     </ul>
@@ -77,16 +79,6 @@
                                 
                                 <?php }?>
                                 <?php if(!$this->session->userdata('username')){?>
-                                  <!-- <li class="<?php if($num == 3): ?>active<?php endif;?>">
-                                    <a href="<?php echo base_url();?>pages/clinic_sched">Clinic Schedule</a>
-                                  </li> -->
-                                  <!-- <li class="dropdown <?php if($num == 3): ?>active<?php endif;?>">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clinic Schedule<span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?php echo base_url();?>calendar/display">View Schedule</a></li>
-                                    </ul>
-                                </li> -->
-                
                                   <li class="<?php if($num == 6): ?>active<?php endif;?>">
                                     <a href="<?php echo base_url();?>pages/services">Services</a>
                                   </li>
@@ -94,25 +86,7 @@
                                   <li class="<?php if($num == 4): ?>active<?php endif;?>">
                                     <a href="<?php echo base_url();?>pages/about_us">About Us</a>
                                   </li>
-                                <?php }?>
-            
-                                     <!-- sample dropdown -->
-                                <!-- <li class="dropdown">
-                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                                  <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                  </ul>
-                                </li> -->
-                
-                              
-                      <!-- end of sample -->
-            
+                                <?php }?>            
                         </ul>                  
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

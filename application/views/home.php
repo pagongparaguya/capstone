@@ -1,7 +1,7 @@
 <?php $this->load->view('header', array('num' => 0, 'title' => 'HOME')); ?>
   
-            <div class="frame">
-                  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                  
+                  <!--div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                       <ol class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
@@ -33,7 +33,7 @@
                          
                         
                         
-                      </div><!--/.carousel-inner-->
+                      </div><!/.carousel-inner
                       <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
@@ -42,9 +42,22 @@
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                       </a>
-                    </div><!--/.carousel-->
+                    </div><!/.carousel
+              </div-->
+            <div class="element-container">
+              <div id="owl-demo" class="owl-carousel owl-theme">
+                        <div class="item">
+                          <img src="<?php echo base_url();?>assets/img/slider/teeth1.jpg" alt="image1">
+                        </div>
+                        <div class="item">
+                          <img src="<?php echo base_url();?>assets/img/slider/teeth2.jpg" alt="image2">
+                        </div>
+                        <div class="item">
+                          <img src="<?php echo base_url();?>assets/img/slider/teeth3.jpg" alt="image3">
+                        </div>                   
               </div>
-            
+            </div>
+
             <div class="element-container">
               <h2>Gayatin Dental Clinic</h2><p></p>
                   <p>What is a dental clinic? People often want to know exactly what is a dental clinic and if there is actually a difference between them and dental offices. 
@@ -56,5 +69,21 @@
                   <p>We understand that when it comes to choosing a dentist, that you want one that you can trust. Gayatin Dental Clinic has been a trusted part of the local 
                   community for years because we truly care about your smile.</p>
             </div>
-  
+
 <?php $this->load->view('footer'); ?>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#owl-demo").owlCarousel({
+          navigation : false, // Show next and prev buttons
+          slideSpeed : 300,
+          paginationSpeed : 400,
+          singleItem:true     
+          // "singleItem:true" is a shortcut for:
+          // items : 1, 
+          // itemsDesktop : false,
+          // itemsDesktopSmall : false,
+          // itemsTablet: false,
+          // itemsMobile : false
+    });
+  });
+</script>
