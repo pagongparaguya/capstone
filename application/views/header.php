@@ -50,13 +50,20 @@
                       <!-- Collect the nav links, forms, and other content for toggling -->
                       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                                <li class="<?php if($num == 0): ?>active<?php endif;?>">
-                                    <a href="<?php echo base_url();?>">Home</a>
-                                </li>
-                                
+                                <?php if(!$this->session->userdata('username')){?>
+                                  <li class="<?php if($num == 0): ?>active<?php endif;?>">
+                                      <a href="<?php echo base_url();?>">Home</a>
+                                  </li>                                
+                                <?php }?>
+
+                                <?php if($this->session->userdata('username')){?>
+                                  <li class="<?php if($num == 0): ?>active<?php endif;?>">
+                                      <a href="<?php echo base_url();?>cadmin/view_dashboard">Home</a>
+                                  </li>                                
+                                <?php }?>
                                 
                                 <li class="<?php if($num == 1): ?>active<?php endif;?>">
-                                    <a href="<?php echo base_url();?>calendar/display">Clinic Schedule</a>
+                                    <a href="<?php echo base_url();?>calendar/display">Clinic Calendar</a>
                                 </li>
                                 <?php if($this->session->userdata('username')){?>
                                 <li class="dropdown <?php if($num == 7): ?>active<?php endif;?>">
@@ -73,16 +80,12 @@
             
                                 <?php if($this->session->userdata('handler')){?>
                                           <li class="<?php if($num == 5): ?>active<?php endif;?>"><a href="<?php echo base_url();?>cadmin/view_staffs">Users</a></li>
-                                      <?php }?>
+                                <?php }?>
                 
                                 <li id="logout" class="buzz-out"><a href="<?php echo base_url();?>cadmin/logout">Logout</a></li>
                                 
                                 <?php }?>
-                                <?php if(!$this->session->userdata('username')){?>
-                                  <li class="<?php if($num == 6): ?>active<?php endif;?>">
-                                    <a href="<?php echo base_url();?>pages/services">Services</a>
-                                  </li>
-                
+                                <?php if(!$this->session->userdata('username')){?>                
                                   <li class="<?php if($num == 4): ?>active<?php endif;?>">
                                     <a href="<?php echo base_url();?>pages/about_us">About Us</a>
                                   </li>
