@@ -475,6 +475,8 @@ class Cadmin extends CI_Controller{
 		}	
    	}
 
-
+   	public function view_dashboard(){
+   		$this->load->view('dashboard');
+   	}
 }
 ?>
