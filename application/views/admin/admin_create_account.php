@@ -68,7 +68,7 @@
 		$('.datepicker').datepicker();	
 		$('#sub').click(function(event){
 			if($('#pass').val()!=$('#cpass').val()){
-				alert('Password / Confirm Password dont match');
+				swal('ERROR','Password / Confirm Password mismatch.','error');
 				event.preventDefault();
 			}
 

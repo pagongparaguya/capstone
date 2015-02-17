@@ -319,25 +319,25 @@
         var fctr = <?php echo $fctr;?>;
         var gctr = <?php echo $gctr;?>;
         if(actr==0){
-          $('#a').html("NO PENDING APPOINTMENT");
+          $('#a').html("NO UPCOMING APPOINTMENT");
         }
         if(bctr==0){
-          $('#b').html("NO PENDING APPOINTMENT");
+          $('#b').html("NO UPCOMING APPOINTMENT");
         }
         if(cctr==0){
-          $('#c').html("NO PENDING APPOINTMENT");
+          $('#c').html("NO UPCOMING APPOINTMENT");
         }
         if(dctr==0){
-          $('#d').html("NO PENDING APPOINTMENT");
+          $('#d').html("NO UPCOMING APPOINTMENT");
         }
         if(ectr==0){
-          $('#e').html("NO PENDING APPOINTMENT");
+          $('#e').html("NO UPCOMING APPOINTMENT");
         }
         if(fctr==0){
-          $('#f').html("NO PENDING APPOINTMENT");
+          $('#f').html("NO UPCOMING APPOINTMENT");
         }
         if(gctr==0){
-          $('#g').html("NO PENDING APPOINTMENT");
+          $('#g').html("NO UPCOMING APPOINTMENT");
         }
         $('#example').dataTable();
 

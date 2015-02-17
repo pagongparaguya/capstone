@@ -8,10 +8,12 @@
 	<button class="btn btn-info btn-cancelapp">Cancel an appointment</button>
 </div>
 
+<?php if($this->session->userdata('username')){?>
 <div class="col-lg-4 col-lg-offset-4 columns">
 	<button type="button" class="btn-closesched btn btn-info" data-target="#modal-closesched">Close a Schedule</button>
 	<button type="button" class="btn-opensched btn btn-info" data-target="#modal-opensched">Open a Schedule</button>
 </div>
+<?php }?>
 	
 </div>
 		<div class="row">
