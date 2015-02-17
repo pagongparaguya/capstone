@@ -1,6 +1,4 @@
 <?php $this->load->view('header', array('num' => 1, 'title' => 'Clinic Calendar')); ?>
-<div class="col-lg-4 col-lg-offset-4 columns">
-</div>
 <div class="col-lg-12 columns">
 	<div class="element-container">
 		<?php echo $calendar; ?>	
@@ -20,7 +18,7 @@
 	  		<div class="col-md-12 columns">
 	  						<div class="col-md-6 col-md-offset-3 columns">	
 
-										  <!-- MODAL FOR CANCELLING A CLOSED APPOINTMENT -->									
+										  <!-- MODAL FOR CANCELLING AN APPOINTMENT -->									
 	  								      <div class="modal fade" id="modal-cancelappointment" tabindex="-1" role="dialog" aria-labelledby="Cance an appointment" aria-hidden="true">
 											  <div class="modal-dialog">
 											    <div class="modal-content">
@@ -106,7 +104,7 @@
 												        <label for="clsched-date">Date</label>
 														<input id="clsched-date" class="form-control" name="date" type="date" placeholder="Date" required/>
 												      	<br>
-												      	
+
 												        <ul class="modal-btn-grp">
 												        	<li>
 														        	<button class="add-tslot-close btn btn-success" type="button">Add Timeslots to Close</button>
