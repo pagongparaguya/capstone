@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/customized.css" />
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/datepicker.css" />
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/dataTables.bootstrap.css" /> 
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/dataTables.bootstrap.css" />
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/sweetalerts/sweet-alert.css" /> 
     <script src="<?php echo base_url();?>assets/js/jquery.js"></script>
     <script src="<?php echo base_url();?>assets/js/jquery-2.1.1.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
@@ -17,6 +18,7 @@
     <script src="<?php echo base_url();?>assets/js/jquery-ui.min.js"></script> 
     <script src="<?php echo base_url();?>assets/js/jquery.validate.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/additional-methods.min.js"></script>
+    <script src="<?php echo base_url();?>assets/sweetalerts/sweet-alert.js"></script>
   </head>
 
   <body>

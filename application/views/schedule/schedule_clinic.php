@@ -13,10 +13,12 @@
 		<?php echo $calendar; ?>	
 	</div>
 </div>
+<?php if($this->session->userdata('username')){?>
 <div class="col-lg-4 col-lg-offset-4 columns">
 	<button type="button" class="btn-closesched btn btn-info" data-target="#modal-closesched">Close a Schedule</button>
 	<button type="button" class="btn-opensched btn btn-info" data-target="#modal-opensched">Open a Schedule</button>
 </div>
+<?php }?>
 	
 </div>
 		<div class="row">
@@ -93,7 +95,7 @@
 												          <option value="wholeday">Whole Day</option>
 												          <option value="tslotsonly">Time Slots Only</option>
 												        </select>	 -->
-
+												
 												        <ul class="modal-btn-grp">
 												        	<li>
 														        	<button class="add-tslot-close btn btn-success" type="button">Add Timeslots to Close</button>

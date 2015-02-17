@@ -188,16 +188,16 @@
 			if($('#np').valid()){
 				if($('#av-timeslots').val()==null){
 					event.preventDefault();
-					alert('Select a timeslot.');
+					swal('ERROR','Select a timeslot.','error');
 				}else if($("#chk").prop("checked")){
 					event.preventDefault();
 					$.getJSON("<?php echo base_url();?>appointment/check_username/",{username:$('#uname').val()},success=function(data){
 			        	if(data != '0'){
-			        		alert('Username already exists.');
+			        		swal('ERROR','Username already exists','ERROR');
 			        	}else{
 			        		$.getJSON("<?php echo base_url();?>appointment/check_pinfo/",{firstname:$('#fname').val(), lastname:$('#lname').val(), middlename:$('#mname').val()},success=function(data){
 			        			if(data != '0'){
-			        				alert('You already have a patient profile.');
+			        				swal('ERROR','You already have a profile','error');
 			        			}else{
 			        				if(confirm('Are you sure to reserve an appointment on ' + $('#idt').val() + ' at ' + $('#itime').val())){
 					        			$('#np').submit();
@@ -207,8 +207,8 @@
 			        	}
 		    		});
 				}else{
-						alert('Agree to Terms to proceed.');
 						event.preventDefault();
+						swal('ERROR','Agree to Terms','error');
 				}
 			}
 		});	
@@ -217,12 +217,12 @@
 			if($('#op').valid()){
 				if($('#av-timeslots').val()==null){
 					event.preventDefault();
-					alert('Select a timeslot.');
+					swal('ERROR','Select a timeslot.','error');
 				}else if($("#chck").prop("checked")){
 					event.preventDefault();
 					$.getJSON("<?php echo base_url();?>appointment/check_username/",{username:$('#opatient-usrname').val()},success=function(data){
 			        	if(data == '0'){
-			        		alert('Username doesnt exists.');
+			        		swal('ERROR','Username doesnt exists.','error');
 			        	}else{
 			        		if(confirm('Are you sure to reserve an appointment on ' + $('#odt').val() + ' at ' + $('#otime').val())){
 			        			$('#op').submit();
@@ -231,7 +231,7 @@
 			        });
 				}else{
 					event.preventDefault();
-					alert('Agree to Terms to proceed.');
+					swal('ERROR','Agree to terms to proceed.','error');
 				}	
 			}	
 		});

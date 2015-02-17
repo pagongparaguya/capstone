@@ -114,6 +114,17 @@ class Gayatin_model extends CI_Model{
 		}
 	}
 
+	public function check_susername($uname){
+		$this->db->where('username',$uname);
+		$query = $this->db->get('user');
+		if($query->num_rows()>0){
+			return 1;
+		}
+		else{
+			return 0;
+		}
+	}
+
 	public function check_pinfo($fname,$lname,$mname){
 		$this->db->where(array('firstname'=>$fname, 'lastname'=>$lname, 'middlename'=>$mname));
 		$query = $this->db->get('patients');
