@@ -5,6 +5,7 @@ class Appointment extends CI_Controller{
 		parent::__construct();
 		$this->load->model('gayatin_appointment_model');
 		$this->load->model('gayatin_model');
+		$this->load->model('gayatin_record_model');
 	}
 
 	// public function new_appointment(){
