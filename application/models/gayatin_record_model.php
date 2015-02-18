@@ -12,6 +12,16 @@ class Gayatin_record_model extends CI_Model{
 		$q = $this->db->get('services');
 		return $q->row();
 	}
+
+	public function insert_new_appointment_record($data){
+		$this->db->insert('appointment_record',$data);
+	}
+
+	public function get_patient_appointment_record($id){
+		$this->db->where('patient_id',$id);
+		$q=$this->db->get('appointment_record');
+		return $q->result();
+	}
 }
 
 ?>

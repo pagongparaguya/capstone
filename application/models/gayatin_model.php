@@ -183,6 +183,12 @@ class Gayatin_model extends CI_Model{
 		return $query->row();
 	}
 
+	public function get_patient_infobyid($id){
+		$this->db->where('id',$id);
+		$query=$this->db->get('patients');
+		return $query->result();
+	}
+
 	public function get_staffs($id){
 		$res = $this->db->query("SELECT * FROM (`user`) WHERE `id` != $id");
 		return $res->result();

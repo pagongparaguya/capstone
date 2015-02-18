@@ -1,8 +1,12 @@
 <?php $this->load->view('header', array('num' => 2, 'title' => 'Add New Patient')); ?>		
-<form method="post" action="<?php echo base_url();?>cadmin/add_patient_record" role="form">
+<form method="post" action="<?php echo base_url();?>records/add_appointment_record" role="form">
                 <div class="element-container">
                       <div class="page-header">
-                        New appointment record for (patient name) on (date)
+                      <?php foreach($prof as $prof):?>
+                        New appointment record for <?php echo $prof->firstname;?> <?php echo $prof->middlename;?> <?php echo $prof->lastname;?> on <?php echo date("F j, Y",strtotime($date));?>
+                      <input type="hidden" value="<?php echo $prof->id;?>" name="patient_id"/>
+                      <input type="hidden" value="<?php echo $date;?>" name="date"/>
+                      <?php endforeach;?>
                       </div>
                       
                       <div class="col-lg-4 col-lg-offset-4 columns">
@@ -29,7 +33,7 @@
                         <select id="type" style="width:50%; margin-right:5px;" class="form-control" name="type" required>
                                       <option value="" disabled default selected style="display:none;">Treatment Type</option>
                                       <option value="Tooth">Tooth</option>
-                                      <option value="Unit">Unit</option>
+                                      <!-- <option value="Unit">Unit</option> -->
                                       <option value="Post">Post</option>
                                       <option value="Canal">Canal</option>
                                       <option value="Arch">Arch</option>
@@ -47,32 +51,36 @@
                         <button id="remove" style="margin-right:5px" type="button" class="btn btn-warning">Remove</button>
                       </div>
 
-                      <table id="tbl" style="margin-top: 10px" class="table" cellspacing="0" width="100%">
+                      <table id="mytable" style="margin-top: 10px" class="table" cellspacing="0" width="100%">
                         <thead>
                           <tr>
                             <th width="35%" style="text-align: center; font-weight: bold; font-size: 100%">Type of treatment</th>
                             <th width="35%" style="text-align: center; font-weight: bold; font-size: 100%">Application</th>
-                            <th width="15%" style="text-align: center; font-weight: bold; font-size: 100%">Treatment price (PHP)</th>
-                            <th width="15%" style="text-align: center; font-weight: bold; font-size: 100%">Total price (PHP)</th>
+                            <th width="30%" style="text-align: center; font-weight: bold; font-size: 100%">Treatment price (PHP)</th>
+                            <!-- <th width="15%" style="text-align: center; font-weight: bold; font-size: 100%">Total price (PHP)</th> -->
                           </tr>
                         </thead>
                         <tbody id="tbl1">
                           
-
+                          
                         
                         </tbody>
                       </table>
+                      
 
                       <div class="col-lg-5 col-lg-offset-2 columns">
+
                         <label for="tot-amt-of-treatments">Total Amount for Treatment(s) Performed (PHP)</label>
-                        <span id="tot-amt-of-treatments" class="form-control" style="width: 60%;">(Total Amount)</span>
+                        <span id="tot-amt-of-treatments" class="form-control" style="width: 60%;">0</span>
+                        <button id="calculate" class="btn btn-info" style="margin-top:5px;" type="button">Calculate Total Amount</button>
+                        <input id="total" name="total_amount" class="form-control" type="hidden" value="0" required/>
                       </div>
                       <div class="col-lg-3 columns">
                         <label for="amt-rcvd">Amount paid (PHP)</label>
-                        <input id="amt-rcvd" class="form-control" type="number" min="0" />
+                        <input id="amt-rcvd" class="form-control" type="number" value="0" min="0" required/>
                       </div>
                       
-                      <br/><br/><br/><br/>
+                      <br/><br/><br/><br/><br/><br/>
                       <button id="sub" type="submit" class="btn-lg btn-success">Submit</button>
                       
                         
@@ -103,7 +111,7 @@ $(document).ready(function(){
       //   $('#drptp'+hold).prop('disabled','disabled');
       // }
       ctr+=1;
-      $('<tr id="tbl'+ctr+'"><td><select required id="'+temp+'" style="margin-right:5px; width:40%;" class="form-control trtype"name="ttype[]" required></td><td id="ndd"></td><td><span><center id="ptd'+temp+'"></center></span><input id="pr'+temp+'"type="hidden" value="0" name="price[]" class="price" /></td><td><span><center id="tptd'+temp+'"></center></span><input id="tpr'+temp+'"type="hidden" value="0" name="tprice[]" /></td></tr>').insertAfter("#tbl"+ temp);
+      $('<tr id="tbl'+ctr+'"><td style="text-align:center"><select required id="'+temp+'" style="margin-right:5px; margin-top:20px; width:80%;" class="form-control trtype"name="ttype[]" required></td><td id="ndd'+temp+'" class="text-center" style="display: inline-flex" width="100%"></td><td><span><center id="ptd'+temp+'"></center></span><input id="pr'+temp+'"type="hidden" value="0" name="price[]" class="price" /></td></tr>').insertAfter("#tbl"+ temp);
       $.ajax({
           url:"<?php echo base_url(); ?>records/get_services",    
           data: {type: $('#type').val()},
@@ -114,9 +122,32 @@ $(document).ready(function(){
           }
       }); 
 
+      if($('#type').val() == 'Tooth'){
+        $('<div class="col-md-12"><div class="col-md-6"><input placeholder="Tooth #" type="number" class="form-control" style="margin-right:5px; width:100%;" pattern="[1-8]{2}" required/></div><div class="col-md-6"><select style="margin-right:5px; width:100%;" class="form-control" name="apptype" required><option value="Mesial">Mesial</option><option value="Distal">Distal</option><option value="Labial">Labial</option><option value="Buccal">Buccal</option><option value="Lingual">Lingual</option></select></div>').insertAfter("#ndd"+ temp);
+      }
+
+      else if($('#type').val() == 'Quadrant'){
+        $('<select id="apptype" style="width:80%; margin-right: 5px" class="form-control" name="apptype" required><option value="Upper right">Upper right</option><option value="Upper left">Upper left</option><option value="Lower left">Lower left</option><option value="All">All</option></select>').insertAfter("#ndd"+ temp);
+      }
+
+      else if($('#type').val() == 'Appliance'){
+        $('<select id="apptype" style="width:80%; margin-right: 5px" class="form-control" name="apptype" required><option value="Upper">Upper</option><option value="Lower">Lower</option><option value="Whole">Whole</option></select>').insertAfter("#ndd"+ temp);
+      }
+
+      else{
+        $('<input placeholder="Tooth #" type="number" class="form-control" style="margin-right:5px; width:80%;" pattern="[1-8]{2}" required/>').insertAfter("#ndd"+ temp);
+      }
+
+
     }else{
       swal('ERROR','Pick treatment type first','error');
     }
+
+    // $('.price').each(function() {
+    //     sum += Number($(this).val());
+    // });
+    // $('#total').val(sum);
+    // $('#tot-amt-of-treatments').html(sum);
   });
 
   $("#remove").click(function() {
@@ -129,8 +160,20 @@ $(document).ready(function(){
   });
 
   $('#sub').click(function(event){
-    if($('#searchTable tbody').children().length == 0){
+    count = 0;
+    $('.price').each(function(){
+      count += Number($(this).val());
+    });
+    if(ctr==1){
       swal('ERROR','No treatment rendered','error');
+      event.preventDefault();
+    }
+    if($('#total').val()!=count){
+      swal('ERROR','Calculate total before you proceed','error');
+      event.preventDefault();
+    }
+    if($('#total').val()>$('#amt-rcvd').val()){
+      swal('ERROR','Amount paid is insuffient','error');
       event.preventDefault();
     }
   });
@@ -148,6 +191,16 @@ $(document).ready(function(){
               }
           }); 
       });
+
+  $('#calculate').click(function(){
+    sum=0;
+    $('.price').each(function(){
+      sum += Number($(this).val());
+    });
+
+    $('#tot-amt-of-treatments').html(sum);
+    $('#total').val(sum);
+  });
 
 });
 

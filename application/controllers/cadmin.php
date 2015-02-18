@@ -41,7 +41,7 @@ class Cadmin extends CI_Controller{
 				$this->session->set_userdata('id',$result['id']);
 				if($result['type']==2)
 					$this->session->set_userdata('handler',$result['type']);
-				redirect('pages');
+				redirect('cadmin/view_dashboard');
 			}
 			else{
 				$data['message']='Username/Password is incorrect!';

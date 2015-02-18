@@ -136,6 +136,18 @@ class Gayatin_appointment_model extends CI_Model{
 
 	}
 
+	public function get_successful_appointments($id){
+		$date = date("Y-m-d");
+		$this->db->select('appointment.*, patients.firstname, patients.middlename, patients.lastname');
+        $this->db->from('appointment');
+        $this->db ->join('patients', 'appointment.patient_id = patients.id');
+        $this->db ->where(array('appointment.date'=>$date,'appointment.patient_id'=>$id));
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	
+
 	public function get_queue_list($date,$time){
 		$this->db->where(array('date'=>$date,'time'=>$time));
 		$query = $this->db->get('appointment_queue');

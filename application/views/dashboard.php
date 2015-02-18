@@ -2,7 +2,7 @@
 <div class="col-xs-12" style="margin-top:20px">
   <div class="col-xs-8">
     <div class="jumbotron dboard-jumbotron" style="margin-bottom:5px; height: 350px">
-      <h2>Welcome (username)</h2>
+      <h2>Welcome <?php echo $this->session->userdata('firstname');?> !</h2>
       <div id="clockbox"></div>
     </div>
     <div class="col-xs-12" style="display:inline-flex">

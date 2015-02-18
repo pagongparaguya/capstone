@@ -13,7 +13,6 @@
 </div>
 <?php }?>
 	
-</div>
 		<div class="row">
 	  		<div class="col-md-12 columns">
 	  						<div class="col-md-6 col-md-offset-3 columns">	

@@ -170,6 +170,22 @@ class Appointment extends CI_Controller{
 		}
 	}
 
+	public function view_successful_appointments(){
+		if($this->session->userdata('username')){
+			$date = date("Y-m-d");
+			$data['appointments'] = $this->gayatin_appointment_model->get_successful_appointments($date);
+			if(!$data['appointment']){
+				$this->load->view('appointment/appointments',$data);
+			}else{
+				
+			}
+		}
+		else{
+			echo "<script>alert('Login is required.');</script>";
+			echo "<meta http-equiv=Refresh content=0;url=../cadmin>";
+		}
+	}
+
 	public function accept_appointment($id){
 		if($this->session->userdata('username')){
 			$this->gayatin_appointment_model->add_appointment($id);
