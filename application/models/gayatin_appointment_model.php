@@ -64,7 +64,7 @@ class Gayatin_appointment_model extends CI_Model{
 						  'date'=>$date,
 						  'time'=>$time);
 		$message1 = "Gayatin Dental Clinic: Your appointment reservation on ".date('F j, Y',strtotime($date))." at ".$time." is successful. Please come on time. Thank you.";
-		$ret = $this->send_sms("APIJXX2UJO2IJ","APIJXX2UJO2IJJXX2U","09059217526",$mno,$message1);
+		$ret = $this->send_sms("APIVYBGMIPVUG","APIVYBGMIPVUGVYBGM","msun",$mno,$message1);
 		if($ret == 1){
 			$this->db->insert('appointment_upcoming',$info);
 			$this->db->where('id',$id);;
@@ -77,7 +77,7 @@ class Gayatin_appointment_model extends CI_Model{
 				$usadate = $usa->date;
 				$usatime = $usa->time;
 				$message2 = "Gayatin Dental Clinic: Your appointment reservation on ".date('F j, Y',strtotime($usadate))." at ".$usatime." is unsuccessful. Please pick another schedule. Thank you.";
-				$dump = $this->send_sms("APIJXX2UJO2IJ","APIJXX2UJO2IJJXX2U","09059217526",$usamno,$message2);
+				$dump = $this->send_sms("APIVYBGMIPVUG","APIVYBGMIPVUGVYBGM","msun",$usamno,$message2);
 				$this->db->where('id',$usaid);
 				$this->db->delete('appointment_queue');
 				if($dump == 0){
@@ -175,10 +175,36 @@ class Gayatin_appointment_model extends CI_Model{
 		}
 	}
 
+	public function cancel_day_appointment($data){
+		$this->db->where(array('date'=>$data['date'],'username'=>$data['username']));
+		$this->db->delete('appointment_queue');
+		$val = $this->db->affected_rows();
+		if($val == 0){
+			$this->db->where(array('date'=>$data['date'],'username'=>$data['username']));
+			$this->db->delete('appointment_upcoming');
+			if($this->db->affected_rows()!=0){
+				$val = $this->db->affected_rows();
+			}
+		}
+		return $val;
+	}
+
 	public function check_onqueue($date,$time){
 		$this->db->where(array('date'=>$date,'time'=>$time));
 		$query = $this->db->get('appointment_queue');
 		return $query->num_rows();
+	}
+
+	public function check_reservations($username,$date){
+		$this->db->where(array('username'=>$username,'date'=>$date));
+		$query = $this->db->get('appointment_queue');
+		$retval = $query->num_rows();
+		if($retval==0){
+			$this->db->where(array('username'=>$username,'date'=>$date));
+			$q = $this->db->get('appointment_upcoming');
+			$retval = $q->num_rows();
+		}
+		return $retval;
 	}
 
 	public function check_username($uname){
@@ -286,11 +312,31 @@ class Gayatin_appointment_model extends CI_Model{
 		return $query->result();
 	}
 
+	// public function send_sms($user,$pass,$sms_from,$sms_to,$sms_msg){           
+ //        $query_string = "api.aspx?apiusername=".$user."&apipassword=".$pass;
+ //        $query_string .= "&senderid=".rawurlencode($sms_from)."&mobileno=".rawurlencode($sms_to);
+ //        $query_string .= "&message=".rawurlencode(stripslashes($sms_msg)) . "&languagetype=1";        
+ //        $url = "http://gateway.onewaysms.com.au:10001/".$query_string; 
+ //        $fd =  @implode ('', file ($url));
+ //        if ($fd){                       
+ //    		if ($fd > 0){
+	// 			$ok = "1";
+	// 	    }        
+	// 	    else {
+	// 			$ok = "0";
+	// 	    }
+ //        }           
+ //        else{                                           
+ //            $ok = "0";       
+ //        }           
+ //        return $ok;  
+ //    }  
+
 	public function send_sms($user,$pass,$sms_from,$sms_to,$sms_msg){           
-        $query_string = "api.aspx?apiusername=".$user."&apipassword=".$pass;
+        $query_string = "api2.aspx?apiusername=".$user."&apipassword=".$pass;
         $query_string .= "&senderid=".rawurlencode($sms_from)."&mobileno=".rawurlencode($sms_to);
         $query_string .= "&message=".rawurlencode(stripslashes($sms_msg)) . "&languagetype=1";        
-        $url = "http://gateway.onewaysms.com.au:10001/".$query_string; 
+        $url = "http://gateway80.onewaysms.ph/".$query_string; 
         $fd =  @implode ('', file ($url));
         if ($fd){                       
     		if ($fd > 0){
@@ -305,4 +351,20 @@ class Gayatin_appointment_model extends CI_Model{
         }           
         return $ok;  
     }  
+
+    public function count_pending_appointments(){
+    	$query = $this->db->get('appointment_queue');
+    	return $query->num_rows();
+    }
+
+    public function count_upcoming_appointments(){
+    	$query = $this->db->get('appointment_upcoming');
+    	return $query->num_rows();
+    }
+
+    public function count_served(){
+    	$this->db->where('date',date('Y-m-d'));
+    	$query = $this->db->get('appointment');
+    	return $query->num_rows();
+    }
 }

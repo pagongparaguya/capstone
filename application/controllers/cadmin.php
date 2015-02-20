@@ -476,7 +476,11 @@ class Cadmin extends CI_Controller{
    	}
 
    	public function view_dashboard(){
-   		$this->load->view('dashboard');
+   		$data['nop'] = $this->gayatin_appointment_model->count_pending_appointments();
+		$data['nou'] = $this->gayatin_appointment_model->count_upcoming_appointments();
+		$data['pst'] = $this->gayatin_appointment_model->count_served();
+		$data['np'] = $this->gayatin_model->count_new_patients();
+   		$this->load->view('dashboard',$data);
    	}
 }
 ?>

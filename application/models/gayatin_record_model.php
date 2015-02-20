@@ -15,6 +15,10 @@ class Gayatin_record_model extends CI_Model{
 
 	public function insert_new_appointment_record($data){
 		$this->db->insert('appointment_record',$data);
+		$this->db->where('id',$data['patient_id']);
+		$arr = array('datemodified',date('Y-m-d'),
+					 'lastmodifiedby',$this->session->userdata('firstname'));
+		$this->db->insert('patients',$arr);
 	}
 
 	public function get_patient_appointment_record($id){

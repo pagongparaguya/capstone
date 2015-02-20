@@ -123,19 +123,19 @@ $(document).ready(function(){
       }); 
 
       if($('#type').val() == 'Tooth'){
-        $('<div class="col-md-12"><div class="col-md-6"><input placeholder="Tooth #" type="number" class="form-control" style="margin-right:5px; width:100%;" pattern="[1-8]{2}" required/></div><div class="col-md-6"><select style="margin-right:5px; width:100%;" class="form-control" name="apptype" required><option value="Mesial">Mesial</option><option value="Distal">Distal</option><option value="Labial">Labial</option><option value="Buccal">Buccal</option><option value="Lingual">Lingual</option></select></div>').insertAfter("#ndd"+ temp);
+        $('<div class="col-md-12"><div class="col-md-6"><input placeholder="Tooth #" type="number" name="ttoothno[]" class="form-control" style="margin-right:5px; width:100%;" pattern="[1-8]{2}" required/></div><div class="col-md-6"><select style="margin-right:5px; width:100%;" class="form-control" name="ttyppe[]" required><option value="Mesial">Mesial</option><option value="Distal">Distal</option><option value="Labial">Labial</option><option value="Buccal">Buccal</option><option value="Lingual">Lingual</option></select></div>').insertAfter("#ndd"+ temp);
       }
 
       else if($('#type').val() == 'Quadrant'){
-        $('<select id="apptype" style="width:80%; margin-right: 5px" class="form-control" name="apptype" required><option value="Upper right">Upper right</option><option value="Upper left">Upper left</option><option value="Lower left">Lower left</option><option value="All">All</option></select>').insertAfter("#ndd"+ temp);
+        $('<select id="apptype" style="width:80%; margin-right: 5px" class="form-control" name="qtype[]" required><option value="Upper right">Upper right</option><option value="Upper left">Upper left</option><option value="Lower left">Lower left</option><option value="All">All</option></select>').insertAfter("#ndd"+ temp);
       }
 
       else if($('#type').val() == 'Appliance'){
-        $('<select id="apptype" style="width:80%; margin-right: 5px" class="form-control" name="apptype" required><option value="Upper">Upper</option><option value="Lower">Lower</option><option value="Whole">Whole</option></select>').insertAfter("#ndd"+ temp);
+        $('<select id="apptype" style="width:80%; margin-right: 5px" name="atype[]" class="form-control" name="apptype" required><option value="Upper">Upper</option><option value="Lower">Lower</option><option value="Whole">Whole</option></select>').insertAfter("#ndd"+ temp);
       }
 
       else{
-        $('<input placeholder="Tooth #" type="number" class="form-control" style="margin-right:5px; width:80%;" pattern="[1-8]{2}" required/>').insertAfter("#ndd"+ temp);
+        $('<input placeholder="Tooth #" type="number" name="otoothno[]" class="form-control" style="margin-right:5px; width:80%;" pattern="[1-8]{2}" required/>').insertAfter("#ndd"+ temp);
       }
 
 

@@ -39,7 +39,7 @@
 										</div>
 
 										<div class="col-lg-3 columns">
-											<label for="av-timeslots"># of people on queue</label><br>
+											<label for="av-timeslots">Number of people on queue</label><br>
 											<span id="onqueue" style="font-weight:bold; margin:0 auto;"></span>
 										</div>
 											
@@ -91,8 +91,9 @@
 							<input type="hidden" name="itime" id="itime"/>
 							<input type="hidden" value="New Patient" name="nptype">
 							<legend id="title"></legend>
-							<label for="uname">Username</label>
-				  			<input id="uname" class="form-control" placeholder="This serves as your identifier" name="uname" type="text" required/><br>
+							<label for="uname">Username</label> <br> <span class="alert-success" style="margin-top: 5px; padding:5px">This will be used for future appointment reservations.</span>	
+				  			<input id="uname" class="form-control" placeholder="This serves as your identifier" name="uname" type="text" required/>				  			
+				  			<br><br>	
 							<label for="fname">Firstname</label>
 				  			<input id="fname" class="form-control" name="fname" type="text" required /><br>
 				  			<label for="lname">Lastname</label>
@@ -102,17 +103,18 @@
 				  			
 				  			<div class="col-sm-12 col-md-12 col-lg-12 columns">				  				
 						  		 	<div class="col-sm-5 col-md-5 col-lg-7 columns">	
-							  			<label for="cno">Mobile Number ( FORMAT : 09123456789 )</label>
-							  			<input id="cno" class="form-control" name="cnum" type="text" required pattern="[0][9][0-9]{9}" /><br>
+							  			<label for="cno">Mobile Number</label> <br>	 <span class="alert-warning" style="margin-top: 5px; padding:5px">Status of your appointment reservation is sent to this number.</span>
+							  			<input placeholder="format: 09123456789" id="cno" class="form-control" name="cnum" type="text" required pattern="[0][9][0-9]{9}" />
+							  			<br>
 				  					</div>
 				  			</div>
 							
-				  			<div class="col-sm-12 col-md-12 col-lg-12 columns">				  				
+				  			<!--div class="col-sm-12 col-md-12 col-lg-12 columns">				  				
 						  		 	<div class="col-sm-5 col-md-5 col-lg-7 columns">	
-							  			<label for="tno">Telephone Number ( FORMAT : 123-1234)</label>
-							  			<input id="tno" class="form-control" name="tnum" type="text" pattern="[0-9]{3}[-][0-9]{4}" /><br>
+							  			<label for="tno">Telephone Number</label>
+							  			<input placeholder="format: 123-1234" id="tno" class="form-control" name="tnum" type="text" pattern="[0-9]{3}[-][0-9]{4}" /><br>
 				  					</div>
-				  			</div>
+				  			</div-->
 										  			
 					        <div class="col-sm-12 col-md-12 col-lg-12 columns">
 							<br />

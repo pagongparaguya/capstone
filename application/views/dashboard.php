@@ -12,7 +12,7 @@
             <h3 class="panel-title">Pending appointments</h3>
           </div>
           <div class="panel-body">
-            <strong>10</strong>
+            <strong><?php echo $nop;?></strong><br/><br/>
             <a class="btn btn-info btn-sm" href="<?php echo base_url();?>appointment/view_appointment_queue" role="button">
             <span class="glyphicon glyphicon-eye-open"></span> View
             </a>          
@@ -25,7 +25,7 @@
             <h3 class="panel-title">Upcoming appointments</h3>
           </div>
           <div class="panel-body">
-            <strong>20</strong>
+            <strong><?php echo $nou;?></strong><br/><br/>
             <a class="btn btn-info btn-sm" href="<?php echo base_url();?>appointment/view_upcoming_appointments" role="button">
             <span class="glyphicon glyphicon-eye-open"></span> View
             </a>
@@ -38,7 +38,8 @@
             <h3 class="panel-title">People served today</h3>
           </div>
           <div class="panel-body">
-            <strong>20</strong>
+            <strong><?php echo $pst;?></strong><br>
+            Person/s
           </div>
         </div>
       </div>
@@ -50,15 +51,15 @@
           <h3 class="panel-title">New patients</h3>
         </div>
         <div class="list-group list-grp-services">
-                <li class="list-group-item">Abellanosa, Jan Andre</li>
-                <li class="list-group-item">Gungob, Lilton</li>
-                <li class="list-group-item">Paraguya, Andre Paulo</li>
-                <li class="list-group-item">Pilapil, Joseph John</li>
-                <li class="list-group-item">Abellanosa, Jan Andre</li>
-                <li class="list-group-item">Gungob, Lilton</li>
-                <li class="list-group-item">Paraguya, Andre Paulo</li>
-                <li class="list-group-item">Pilapil, Joseph John</li>
-              </div>
+            <?php foreach($np as $np):?>
+                <li class="list-group-item"><?php echo $np->firstname;?> <?php echo $np->middlename;?> <?php echo $np->lastname;?></li>
+            <?php endforeach;?>    
+            <li class="list-group-item">
+              <a class="btn btn-info btn-sm" href="<?php echo base_url();?>appointment/view_upcoming_appointments" role="button">
+              <span class="glyphicon glyphicon-eye-open"></span> View
+              </a>
+            </li>
+        </div>
       </div>    
   </div>
 </div>

@@ -11,12 +11,9 @@ $i;
 		<?php echo $calendar; ?>	
 		<div class="alert-success text-center" style="margin: 5px 35px 50px 35px; padding: 10px;"><strong>Note</strong>: Select a date on the calendar to view the available timeslots.</div>	
 	</div>
-	<?php if(!$this->session->userdata('username')){?>
 	<button class="btn btn-info btn-cancelapp">Cancel an appointment</button>
-	<?php } else{?>
-	<button style="display:none" class="btn btn-info btn-cancelapp">Cancel an appointment</button>
-	<?php }?>
 </div>
+
 
 <div class="col-lg-4 col-lg-offset-4 columns">
 <?php if($this->session->userdata("username")){?>
@@ -26,19 +23,17 @@ $i;
 <button type="button" style="display:none" class="btn-opnsesched btn btn-info" data-target="#modal-opensched">Open a Schedule</button>
 <button type="button" style="display:none" class="btn-closesched btn btn-info" data-target="#modal-closesched">Close a Schedule</button>
 <?php }?>
-	
-
-
 </div>
+	
 		<div class="row">
 	  		<div class="col-md-12 columns">
 	  						<div class="col-md-6 col-md-offset-3 columns">	
 
-											<!-- MODAL FOR CANCELLING AN APPOINTMENT -->									
+										  <!-- MODAL FOR CANCELLING AN APPOINTMENT -->									
 	  								      <div class="modal fade" id="modal-cancelappointment" tabindex="-1" role="dialog" aria-labelledby="Cance an appointment" aria-hidden="true">
 											  <div class="modal-dialog">
 											    <div class="modal-content">
-												  <form method="post" role="form" action="<?php echo base_url();?>appointment\cancel_day_appointment">
+
 											      <div class="modal-header">
 											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 											        <h4 class="modal-title">Cancel an appointment</h4>
@@ -47,7 +42,7 @@ $i;
 											      <div class="modal-body" style="width:50%; margin: 0 auto">
 											        	<label>
 											        		Username	
-											        		<input id="uid" style="width:138%; font-weight:normal" name="username" type="text" placeholder="Input your assigned username" class="form-control" required/>
+											        		<input style="width:138%; font-weight:normal" type="text" placeholder="Input your assigned username" class="form-control" required/>
 											        	</label>
 												        <br />
 												        <label for="opsched-date">Date</label>
@@ -55,53 +50,51 @@ $i;
 											      </div>
 
 											      <div class="modal-footer">
-											        <button id="cancelappointment" type="submit" class="btn btn-primary">Submit</button>
+											        <button type="button" class="btn btn-primary">Submit</button>
 											      </div>
-											      </form>
 											    </div><!-- /.modal-content -->
 											  </div><!-- /.modal-dialog -->
 										  </div><!-- /.modal -->
-										  <!-- END OF MODAL FOR CANCELLING A APPOINTMENT -->
+										  <!-- END OF MODAL FOR CANCELLING A CLOSED APPOINTMENT -->									
 
 	  								      <!-- MODAL FOR OPENING A SCHEDULE -->									
 	  								      <div class="modal fade" id="modal-opensched" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											  <div class="modal-dialog">
-											  
 											    <div class="modal-content">
-												<form method="post" role="form" action="<?php echo base_url();?>calendar\openday">
+										
 											      <div class="modal-header">
 											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 											        <h4 class="modal-title">Open a day</h4>
 											      </div>
-													
-													
-											      <div class="modal-body" style="width:50%; margin: 0 auto">
+
+											      <div class="modal-body">
+												          <form method="post" role="form" action="<?php echo base_url();?>calendar\openday">
 												        
 														<label for="clsched-date">Open a closed date</label>
 											
 														
 														<select id="open-type" class="form-control" name="date" required>
-														<option value="" disabled default selected style="display:none;">Select from the closed dates below</option>
+														<option   value=""></option>
 														<?php for($i=0;$i<$ctr;$i++){?>
 															<option value="<?php echo $dates[$i];?>"><?php echo date("F j, Y",strtotime($dates[$i]));?> </option>
 														<?php }?>
 														</select>
-												    </div>
-												      	
+														<input class="btn btn-info" type="submit" value="submit" name="submit" required />
+												      </form>	
 												      	<!-- <label for="open-type">Open Type</label>
 								  						<select id="open-type" class="form-control" name="open-type" required>
 												          <option value="wholeday">Whole Day</option>
 												          <option value="tslotsonly">Time Slots Only</option>
 												        </select>	 -->
-															
+															</div>
 												        
 
 												      
 
 											      <div class="modal-footer">
-											        <input class="btn btn-info" type="submit" value="submit" name="submit" required />
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											        
 											      </div>
-											      </form>
 											    </div><!-- /.modal-content -->
 											  </div><!-- /.modal-dialog -->
 										  </div><!-- /.modal -->
@@ -111,85 +104,57 @@ $i;
 	  								      <!-- MODAL FOR CLOSING A SCHEDULE -->
 	  								      <div class="modal fade" id="modal-closesched" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											  <div class="modal-dialog">
-											  
 											    <div class="modal-content">
-												<form method="post" action=<?php echo base_url()."calendar\closeday";?> >
+
 											      <div class="modal-header">
 											        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 											        <h4 class="modal-title">Close a Schedule</h4>
 											      </div>
 
 											      <div class="modal-body">
-												  
+												  <form method="post" action=<?php echo base_url()."calendar\closeday";?> >
 												        <label for="clsched-date">Close a day</label>
 														<input class="form-control" id="cal-date" type="date" name="date" min=<?php echo date("Y-m-d");?> required/>
-														
-												   </div>
+														<input class="btn btn-info" type="submit" value="submit" name="submit" required/>
+												      </form>	
+												      	<!-- <label for="close-type">Close Type</label>
+								  						<select id="close-type" class="form-control" name="close-type" required>
+												          <option value="wholeday">Whole Day</option>
+												          <option value="tslotsonly">Time Slots Only</option>
+												        </select>	 -->
+
+												        
+
+												    									        
+											      </div>
 
 											      <div class="modal-footer">
-											        <input class="btn btn-info" type="submit" value="submit" name="submit" required/>
+											        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											        
 											      </div>
-											      </form>
 											    </div><!-- /.modal-content -->
 											  </div><!-- /.modal-dialog -->
 										  </div><!-- /.modal -->
 	  								      <!-- END OF CLOSTING A SCHEDULE MODAL -->
-
-	  								      
-	  									  
-			</div>
-	  						</div>
-
+				</div>
 		</div>
-
-		
-
-<?php $this->load->view('footer');?>
-
+</div>
+<?php $this->load->view('footer'); ?>
 <script type="text/javascript">
   $(document).ready(function(){
-  	document.getElementsByClassName('btn-opnsesched')[0].onclick = function(){
+  	document.getElementsByClassName('btn-opensched')[0].onclick = function(){
   		$('#modal-opensched').modal('toggle');
-		
   	};
 
   	document.getElementsByClassName('btn-closesched')[0].onclick = function(){
   		$('#modal-closesched').modal('toggle');
-  	};	
-	
-	document.getElementsByClassName('btn-cancelapp')[0].onclick = function(){
-  		$('#modal-cancelappointment').modal('toggle');
   	};
-	
-	$('#cancelappointment').click(function(event){
-		if(confirm('Are you sure to cancel appointment ?')){
-		// 	event.preventDefault();
-		// $.getJSON("<?php echo base_url();?>appointment/check_reservations/",{username:$('#uid').val(), date:$('#opsched-date').val()},success=function(data){
-		// 	if(data == '0'){
-		// 		swal('ERROR','No reserved appointment found.','error');
-		// 	}else{
-	 //    			$('#cancelappointment').submit();
-		// 	}
-		// });
-		}else{
-			event.preventDefault();
-		}
-		// event.preventDefault();
-		// $.getJSON("<?php echo base_url();?>appointment/check_reservations/",{username:$('#uid').val(), date:$('#opsched-date').val()},success=function(data){
-		// 	if(data == '0'){
-		// 		alert('No reserved appointment found.');
-		// 	}else{
-		// 		if(confirm('Are you sure to reserve an appointment on ' + $('#idt').val())){
-	 //    			$('#cancelappointment').submit();
-		// 		}
-		// 	}
-		// });
-	});
-		
-		
-		
-		
-	$('.calendar .day').click(function(){	
+
+  	document.getElementsByClassName('btn-cancelapp')[0].onclick = function(){
+  		$('#modal-cancelappointment').modal('toggle');
+  	};   
+
+  	$('.calendar .day').click(function(){	
 		var d= new Date();
 		var m=d.getMonth()+1;
 		var y=d.getFullYear();
@@ -227,11 +192,11 @@ $i;
 													
 										
   });
-  
-  
-});
 
-tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+  	
+  });
+
+  tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
     tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
 
       function GetClock(){
@@ -255,4 +220,3 @@ tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Satu
         setInterval(GetClock,1000);
       }
 </script>
-

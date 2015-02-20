@@ -258,7 +258,7 @@ class Appointment extends CI_Controller{
 					$this->load->view('appointment/appointment_new',$data);
 				}
 				else{
-					echo "<script>alert('Scheduled appointment should be at least 2 day prior to the schedule.');</script>";
+					echo "<script>alert('Scheduled appointment should be at least 2 days after the current date.');</script>";
 					echo "<script>window.location='".base_url()."calendar/display'</script>";
 				}
 			}else{
@@ -285,5 +285,25 @@ class Appointment extends CI_Controller{
 	public function check_pinfo(){
 		$d=$this->gayatin_model->check_pinfo($this->input->get("firstname",true),$this->input->get("lastname",true),$this->input->get("middlename",true));
 		echo json_encode($d);
+	}
+
+	public function check_reservations(){
+		$d=$this->gayatin_appointment_model->check_reservations($this->input->get("username",true),$this->input->get("date",true));
+		echo json_encode($d);
+	}
+
+	public function cancel_day_appointment(){
+			$data = array('username'=>$this->input->post('username'),
+						  'date'=>$this->input->post('date'));
+			$d = $this->gayatin_appointment_model->cancel_day_appointment($data);
+			if($d == 1){
+				echo "<script>alert('Your appointment on that day successfully cancelled.');</script>";
+				echo "<script>window.location='".base_url()."calendar/display'</script>";
+			}
+			else{
+				echo "<script>alert('No reserved appointment found.');</script>";
+				echo "<script>window.location='".base_url()."calendar/display'</script>";
+			}
+			
 	}
 }

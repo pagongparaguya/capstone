@@ -66,6 +66,10 @@
 	    					  'chiefcomplaint'=> $this->input->post('complaint'),
 	    					  'otherfindings'=> $this->input->post('finding') );
 	    		$this->gayatin_record_model->insert_new_appointment_record($data);
+	    		
+
+
+
 	    		redirect('cadmin/view_patient_profile/'.$this->input->post('patient_id'));
 	    	}else if($this->session->userdata('username') && $this->input->post("fname")==""){
 			redirect('records/view_appointment_record');

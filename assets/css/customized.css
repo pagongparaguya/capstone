@@ -287,24 +287,49 @@ body {
 /* ----- CALENDAR ELEMENTS ----- */
 
 	.calendar{
-		font-family:Arial;font-size 12px;
+	font-family: "Helvetica Neue Bold", arial, helvetica, sans-serif;
+	font-size: 100%;
+	margin: 10px;
+	color: #333;
+	background-color: #cecece;
+		/*font-family:Arial;font-size 12px;*/
 		}
 		table.calendar{
+		
 			margin:auto; border-collapse: collapse;
+			
 		}
 		.calendar .days td{
-		 width: 150px; height:100px; paddings: 4px;
-		 border: 1px solid #999;
-		 vertical-align:  top;
-		 background-color: #DEF;
-		}
-		.calendar .days td:hover{
-		 background-color: white;
-		 }
+		 width: 150px; height:100px; paddings: 5px;
 		
+			
+	position: relative;
+	
+	background-color: #fff;
+		border-radius: 0.6em;
+	box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff, 0 5px 0 #bdbdbd, 0 0 0 1px #bdbdbd;
+	overflow: hidden;
+		}
+		
+		.calendar .days td:hover{
+		cursor: pointer;
+		background-color: green;
+		 }
+		 
+		.calendar .day_num{
+		 display: block;
+		width: 100%;
+		font-size: 3em;
+		font-weight: bold;
+		font-style: normal;
+		text-align: center;
+			}
+			
+			
 		.calendar .highlight{
 		  font-weight: bold; color: #00F;
 		}
+		
 		.calendar.weekday{
 			background-color:red;
 			}

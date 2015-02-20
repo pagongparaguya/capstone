@@ -214,6 +214,12 @@ class Gayatin_model extends CI_Model{
 		$this->db->where('id',$id);
 		$this->db->delete('user');
 	}
+
+	public function count_new_patients(){
+		$this->db->order_by('id','desc');
+		$query = $this->db->get('patients',5);
+		return $query->result();
+	}
 }
 
 ?>
